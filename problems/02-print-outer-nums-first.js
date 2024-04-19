@@ -29,16 +29,16 @@ printOuterNumsFirst([21, 4, 6, 93, 78]);
 
 ***********************************************************************/
 
-  function printOuterNumsFirst(nums) {
-    if (nums.length === 1) return;
+function printOuterNumsFirst(nums) {
+    if (nums.length === 0) return; // changed the base case, should be 0 instead of 1
 
     // extract the number from the beginning if the length of the array is even
     // else, extract from the end
     let num;
     if (nums.length % 2 === 0) {
-      num = nums.pop();
+        num = nums.shift(); // original problem had nums.pop(), should be shift()
     } else {
-      num = nums.shift();
+        num = nums.pop(); // original problem had nums.shift(), should be pop()
     }
 
     // print the extracted number
@@ -46,11 +46,11 @@ printOuterNumsFirst([21, 4, 6, 93, 78]);
 
     // Make a recursive call with the modified nums array.
     printOuterNumsFirst(nums);
-  }
+}
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS  LINE*****************/
 try {
-  module.exports = printOuterNumsFirst;
+    module.exports = printOuterNumsFirst;
 } catch {
-  module.exports = null;
+    module.exports = null;
 }

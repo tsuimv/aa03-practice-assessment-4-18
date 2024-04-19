@@ -22,12 +22,21 @@ printAndPause([200, 800, 200, 800, 200, 800])
 ***********************************************************************/
 
 function printAndPause(nums) {
-  // Your code here 
+    if (nums.length) {
+        let number = nums.shift(); // takes the first element of the nums array
+        console.log(number); // prints out that element
+        setTimeout(() => {
+            // setTimeout to recursively call back to the printAndPause function, and delaying it by the number that was printed previously
+            printAndPause(nums);
+        }, number);
+    } else {
+        return;
+    }
 }
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS  LINE*****************/
 try {
-  module.exports = printAndPause;
+    module.exports = printAndPause;
 } catch {
-  module.exports = null;
+    module.exports = null;
 }

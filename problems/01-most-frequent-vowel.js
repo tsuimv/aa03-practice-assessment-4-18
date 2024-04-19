@@ -59,14 +59,52 @@ mostFrequentVowel(['dog', 'cow', 'pig', 'chicken']); // 'i' or 'o'
 
 ***********************************************************************/
 
-const VOWELS = ['a', 'e', 'i', 'o', 'u'];
+const VOWELS = ["a", "e", "i", "o", "u"];
 const mostFrequentVowel = function (words, counter = {}) {
-  // Your code here 
-}
+    let objCheck = Object.entries(counter).length; // reassinging counter length to objCheck
+
+    if (!words.length && !objCheck) {
+        // if words.length and counter is empty, return ""
+        return "";
+    }
+
+    if (!words.length && objCheck) {
+        // if words is empty
+        let highestCount = 0; // you set highest count to 0
+        let highLetter; // initializing variable for the highest count of letter
+
+        for (let key in counter) {
+            // if the key at counter is higher than variable highestCount
+            if (counter[key] > highestCount) {
+                // we set highestCount to our key at counter
+                highestCount = counter[key]; // we then set the earlier created highLetter variable to the key
+                highLetter = key;
+            }
+        }
+        return highLetter; // return to grab the highest letter out
+    }
+
+    let word = words.pop(); // creating a new variable which will pop off each word in the array
+    for (let i = 0; i < word.length; i++) {
+        // iterating through the popped off word
+        let letter = word[i]; // variable for each letter in the word
+        if (VOWELS.includes(letter)) {
+            // if the letter is a variable
+            if (counter[letter]) {
+                // if the letter is already present in the counter object...
+                counter[letter]++; // you increase the count by 1
+            } else {
+                // if the letter is not present in the counter object...
+                counter[letter] = 1; // set the letter equal to the one to put the letter in the counter object
+            }
+        }
+    }
+    return mostFrequentVowel(words, counter); // return to get the letter
+};
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS  LINE*****************/
 try {
-  module.exports = mostFrequentVowel;
+    module.exports = mostFrequentVowel;
 } catch {
-  module.exports = null;
+    module.exports = null;
 }

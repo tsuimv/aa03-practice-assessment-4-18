@@ -49,14 +49,40 @@ Hint: Remember Polya's problem solving framework!
   * It's possible (not mandatory) to solve this in 1-3 lines of code!
 
 ***********************************************************************/
-
+// method 1 using filter()
 function eliminateType(arr) {
-  // Your code here 
+    return function (string) {
+        // return function
+        let types = ["object", "number", "string", "boolean", "undefined"]; // this variable sets the types that we could possibly have
+        let res = arr.filter((word) => {
+            // creating a result variable to filter through the array for each element
+            return typeof word !== string; // returns words that are not equal to the string argument provided
+        });
+        return res; // returns result
+    };
+}
+
+// method 2 using a for loop
+function eliminateType(arr) {
+    return function (deleteType) {
+        // return function
+        let answer = []; // creating empty array
+        for (let i = 0; i < arr.length; i++) {
+            // iterating through the array
+            let element = arr[i]; // grabbing each individual element in the array
+            let type = typeof element; // creating type variable, which stores the typeof element at each element during iteration
+            if (type !== deleteType) {
+                // if the type does not equal the argument that wants to be deleted
+                answer.push(element); // we push all the words that won't be deleted into the answer array
+            }
+        }
+        return answer; // return the array
+    };
 }
 
 /**************DO NOT MODIFY ANYTHING UNDER THIS  LINE*****************/
 try {
-  module.exports = eliminateType;
+    module.exports = eliminateType;
 } catch {
-  module.exports = null;
+    module.exports = null;
 }
